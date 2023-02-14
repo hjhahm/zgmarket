@@ -79,7 +79,6 @@ const getHtml = async name => {
         var isSwipeImg = false
         var title = ''
         var price = ''
-        //var shop = $('#pc-storeNameWidget > div > div > a > span').text()
 
         if ((await container.$('div._2qTmf5nA5C')) !== null) {
           imgContainer = await container.$('div._2qTmf5nA5C')
