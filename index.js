@@ -11,6 +11,7 @@ const memberRouter = require('./routes/member')
 //const commentRouter = require('./routes/comment')
 //  직잭
 const shopRouter = require('./routes/shop')
+const productRouter = require('./routes/product')
 //const likeRouter = require('./routes/like')
 
 //const userRouter = require('./routes/user')
@@ -41,6 +42,7 @@ app.use(cookieParser())
 
 app.use('/member', memberRouter)
 app.use('/shop', shopRouter)
+app.use('/product', productRouter)
 
 //app.use('/board', boardRouter)
 

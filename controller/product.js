@@ -1,16 +1,20 @@
-const Product = require('../models/Product')
+const Product = require('../model/Product')
 const asyncHandler = require('express-async-handler')
 
 // [POST] /product
-const create = asyncHandler(async (req, res) => {
+const createProduct = asyncHandler(async (req, res) => {
   const { title, price, image, category, shop } = req.body
 
-  //   if (orderItems && orderItems.length === 0) {
-  //     res.status(400)
-  //     throw new Error('No items in the cart')
-  //     return
-  //   } else
+  // Validate request
+  if (!title) {
+    res.status(400).send({
+      message: 'Title is empty!',
+    })
+    return
+  }
+
   {
+    // Set Product
     const product = new Product({
       title,
       price,
@@ -19,13 +23,23 @@ const create = asyncHandler(async (req, res) => {
       shop,
     })
 
-    const createProduct = await product.save()
+    Product.create(product)
+      .then(data => {
+        res.send(data)
+      })
+      .catch(err => {
+        res.status(500).send({
+          message: err.message || 'Create tutorial failure.',
+        })
+      })
 
-    res.status(201).json(create)
+    // await product.save()
+
+    // res.status(201).json(create)
   }
 })
 
-// [GET] /products
+// [GET] /
 const getProducts = asyncHandler(async (req, res) => {
   const products = await Product.find({})
 
